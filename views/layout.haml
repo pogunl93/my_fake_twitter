@@ -1,0 +1,21 @@
+!!!
+%html
+	%head
+		%title Fake Twitter V2
+		%link{:href => "/bootstrap.min.css", :type => "text/css", :rel => "stylesheet"}
+		%link{:href => "/bootstrap-responsive.min.css", :type => "text/css", :rel => "stylesheet"}
+	%body 
+		.row
+			.span8.offset2
+				%h1 Welcome to Fake Twitter
+				%ul.nav.nav-pills 
+					%li 
+						%a{:href => "/"} Home 
+					%li 
+						%a{:href => "/sign_up"} Sign Up
+					%li 
+						%a{:href => "users/sign_in"} Sign In
+					%li 
+						%a{:href => "users/sign_out"} Sign Out 
+			.span10.offset2
+				=yield 			
