@@ -1,0 +1,16 @@
+%h1=@user.full_name 
+
+%h2 Bio 
+=@user.bio
+
+%h2 URL 
+=@user.url
+
+%h2 Location
+=@user.location
+
+%h2 Compose your tweet
+%form{:action => "/new_tweet", :method => "post"}
+	%textarea{:placholder => "Compose your tweet", :name => "tweet"}
+	%br
+	%input{:type => "submit", :class => "btn"}
