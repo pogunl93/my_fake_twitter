@@ -27,9 +27,14 @@ GEM
     arel (4.0.0)
     atomic (1.1.10)
     builder (3.1.4)
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
     haml (4.0.3)
       tilt
     i18n (0.6.4)
+    json (1.8.0)
     minitest (4.7.5)
     multi_json (1.7.7)
     pg (0.15.1)
@@ -37,6 +42,8 @@ GEM
     rack-protection (1.5.0)
       rack
     rake (10.1.0)
+    scoped_search (2.6.0)
+      activerecord (>= 2.1.0)
     sinatra (1.4.3)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -55,10 +62,12 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  carrierwave
   haml
   pg
   rack-flash3!
   rake
+  scoped_search
   sinatra
   sinatra-activerecord
   sqlite3

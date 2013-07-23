@@ -14,12 +14,20 @@
 					%li 
 						%a{:href => "/"} Home 
 					%li 
-						%a{:href => "/users/sign_up"} Sign Up
-					%li 
-						%a{:href => "/users/sign_in"} Sign In
-					%li 
-						%a{:href => "/sign_out"} Sign Out 
-					%li 
-						%a{:href => "/users/profile"} Profile					
+						%a{:href => "/profile_list"} Users		
+					-if current_user.nil? 
+						%li 
+							%a{:href => "/users/sign_up"} Sign Up
+						%li 
+							%a{:href => "/users/sign_in"} Sign In	
+					-elsif	 	 
+						%li 
+							%a{:href => "/users/#{current_user.id.to_s}"} Profile		
+						%li 
+							%a{:href => "/sign_out"} Sign Out 	
+					%form{:class => "navbar-search pull-right", :method => "post", :action => "/search_results"}
+						%input{:type => "text", :class => "search_query", :placeholder => "Search Tweets", :name => "search_query"}
 			.span10.offset2
 				=yield 			
+
+

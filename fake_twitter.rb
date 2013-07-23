@@ -2,9 +2,12 @@ require 'rubygems'
 require 'haml'
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'scoped_search'
+require 'stringio'
 configure(:development){ set :database, "sqlite3:///Twitter_DB.sqlite3" }
 require './models'
-
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
 require 'bundler/setup'
 require 'sinatra/base'
 require 'rack-flash'
@@ -17,11 +20,11 @@ set :sessions => true
 require './helpers'
 
 get '/' do
-	@users = User.all
-	haml :home 
+	@tweet = Tweet.all 
+	haml :news_feed 
 end
 
-get '/sign_up' do 
+get '/users/sign_up' do 
 	haml :sign_up
 end 
 
@@ -44,12 +47,23 @@ post '/users/sign_in' do
 			redirect '/'
 		else 
 			flash[:notice] = "Your password was wrong"
-			redirect '/sign_in'
+			redirect '/users/sign_in'
 		end 
 	else 
 		flash[:notice] = "Your username was not found"
-		redirect '/sign_in'
+		redirect '/users/sign_in'
 	end 
+end 
+
+get '/sign_out' do
+	session[:user_id] = nil 
+	flash[:notice] = "You have successfully signed out"
+	redirect '/'
+end
+
+get '/profile_list' do
+	@users = User.all
+	haml :profile_list
 end 
 
 get '/users/:id' do 
@@ -57,9 +71,19 @@ get '/users/:id' do
 	haml :profile
 end 
 
-post '/new_tweet' do 
-	@tweet = Tweet.create(:text => params[:tweet])
+post '/users/:id' do 
+	@tweet = Tweet.create(:tweet_data => params[:tweet])
 	@user = User.find(params[:id])
 	@user.tweets << @tweet
-	redirect '/new_tweet' 
+	redirect '/' 
 end 
+
+get '/search' do
+	haml :search
+end 
+
+post '/search_results' do
+	@text_input = Tweet.where("tweet_data like '%#{params[:search_query]}%'")
+end 
+
+

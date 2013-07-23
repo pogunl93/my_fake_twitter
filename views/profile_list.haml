@@ -1,0 +1,4 @@
+%h1 Hello There!
+-@users.each do |user|
+	%a{:href => "users/#{user.id}"}=user.username
+	%br 

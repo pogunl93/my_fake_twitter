@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  scoped_search :on => [:fname, :lname, :city, :state]
 
 	def full_name 
 		if !lname.nil?
@@ -21,5 +22,7 @@ class User < ActiveRecord::Base
 end
 
 class Tweet < ActiveRecord::Base
+	scoped_search :on => [:tweet_data]
+	
 	belongs_to :user 
 end 

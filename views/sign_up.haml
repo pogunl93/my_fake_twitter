@@ -1,4 +1,4 @@
-%form{:method => "post", :action => "/sign_up"}
+%form{:method => "post", :action => "/users/sign_up"}
 	%label{:name => "fname"} First Name
 	%input{:type => "text", :name => "fname"}
 
@@ -15,7 +15,7 @@
 	%input{:type => "text", :name => "email"}
 
 	%label{:name => "Bio"} Bio
-	%input{:name => "bio", :placeholder => "Enter your bio here"}
+	%textarea{:name => "bio", :placeholder => "Enter your bio here"}
 
 	%label{:name => "url"} URL
 	%input{:type => "text", :name => "url"}
@@ -25,6 +25,9 @@
 
 	%label{:name => "state"} State
 	%input{:type => "text", :name => "state"}
+
+	%label{:name => "upload"} Upload your picture
+	%input{:type => "file", :name => "picture_upload"}
 
 	%br 
 
