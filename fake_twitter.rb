@@ -79,11 +79,12 @@ post '/users/:id' do
 end 
 
 get '/search' do
-	haml :search
+	
 end 
 
 post '/search_results' do
-	@text_input = Tweet.where("tweet_data like '%#{params[:search_query]}%'")
-end 
+	@results = Tweet.where("tweet_data LIKE '%#{params[:search_query]}%'")
+	haml :search_results
+end
 
 
